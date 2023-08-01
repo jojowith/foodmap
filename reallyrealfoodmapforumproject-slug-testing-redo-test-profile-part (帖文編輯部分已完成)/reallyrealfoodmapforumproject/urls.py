@@ -31,7 +31,7 @@ urlpatterns = [
     # path('posts/', post_views.post_list(), name="list"),
     path('', post_list, name="home"),
     # path('', account_signup_view, name="signup")
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
