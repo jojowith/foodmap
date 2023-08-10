@@ -15,6 +15,12 @@ class PostInfo(models.Model):
     Cover = models.ImageField(upload_to='media/postCoverPicture/', blank=True)
     image = models.ImageField(upload_to='media/postPicture/', blank=True)
     video = models.FileField(upload_to='media/postVideo/', blank=True)
+    likes= models.ManyToManyField(User, related_name="post_like", blank=True)
+    dislike= models.ManyToManyField(User, related_name="post_dislike", blank=True)
+    def number_of_like(self):
+        return self.likes.count()
+    def number_of_dislike(self):
+        return self.dislike.count()
 
     def __str__(self):
         return (

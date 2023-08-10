@@ -14,12 +14,19 @@
                 <div class="card-container-userprofile">
                     <div class="card-body">
                         {% load static %}
-                        <img class="carduserprofileimage" src="{% static '11zon_cropped%201.png' %}" width="80"
-                             height="80" alt="Card Image">
+                        {% if profile.profile_image %}
+                            <img class="carduserprofileimage" src="{{ profile.profile_image.url }}" width="80"
+                                 height="80" alt="{{ profile.user.username }}">
+
+                        {% else %}
+                            <img class="carduserprofileimage" src="{% static '11zon_cropped%201.png' %}" width="80"
+                                 height="80" alt="Card Image">
+
+                        {% endif %}
                         <span class="userprofiletext">
-                <h2>{{ profile.user.first_name }}</h2>
-                <p class="card-text-userprofile">@{{ profile.user.username }}</p>
-                </span>
+                        <h2>{{ profile.user.first_name }}</h2>
+                        <p class="card-text-userprofile">@{{ profile.user.username }}</p>
+                        </span>
                     </div>
                 </div>
                 <!--</a>-->

@@ -1,7 +1,7 @@
 {% extends 'NotSigningInBaseLayout.html' %}
-
+{% block profile_image %}
+{% endblock %}
 {% block content %}
-
     {% if notOwnProfile %}
         <div class="popup-1" id="popup-1-1">
             <div class="overlay-1"></div>
@@ -32,7 +32,11 @@
                 <div class="item-content1">
                     {% load static %}
                     {% if notOwnProfile.profile_image %}
-                        <img src="{{ notOwnProfile.profile_image.url }}">
+                        <img style="width: 50px" height="50px" src="{{ notOwnProfile.profile_image.url }}"
+                             class="rounded-circle">
+                    {% else %}
+                        <img style="width: 50px" height="50px" src="{%static '11zon_cropped%201.png'%}"
+                             class="rounded-circle">
                     {% endif %}
                     <p style="color: white; margin-top: 20px">{{ notOwnProfile.user.first_name }}</p>
                     <p style="color: white">@{{ notOwnProfile.user.username }}</p>
@@ -92,9 +96,14 @@
                     </a>
                     <div class="user-info">
                         {% load static %}
-                        <img id="user-logo" src="{% static '11zon_cropped%201.png' %}" width="40" height="40"
-                             alt="用戶logo相片">
-                        <span class="username">非洲小黑人</span>
+                        {% if notOwnProfile.profile_image %}
+                            <img id="user-logo" src="{{ notOwnProfile.profile_image.url }}" width="40" height="40"
+                                 alt="{{ notOwnProfile.user.username }}" class="rounded-circle">
+                        {% else %}
+                            <img id="user-logo" src="{% static '11zon_cropped%201.png' %}" width="40" height="40"
+                                 alt="{{ notOwnProfile.user.username }}">
+                        {% endif %}
+                        <span class="username">{{ notOwnProfile.user.username }}</span>
                     </div>
                     <section id="brief">
                         春風拂面，微笑如花。彩蝶翩翩，盡情飛舞。夏日炎炎，冰淇淋解渴。清晨曙光，小鳥歌唱。秋風瑟瑟，楓葉飄落。冬雪紛飛，白茫茫一片。生活如詩，擁抱每一刻。廢文就是這樣，無厘頭又好玩。好啦，我就這樣廢廢地寫了五十個字！.........

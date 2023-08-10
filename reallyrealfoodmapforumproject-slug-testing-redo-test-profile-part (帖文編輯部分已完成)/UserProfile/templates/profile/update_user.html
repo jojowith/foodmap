@@ -75,11 +75,10 @@
         }
 
 
-
     </style>
 {% endblock %}
 {% block content %}
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="top">
             <div class="title">
@@ -91,16 +90,19 @@
         </div>
 
         <div class="mid">
-            <img src="{% static '11zon_cropped%201.png' %}">
+            {% if notOwnProfile.profile_image %}
+                <img style="width: 50px" height="50px" src="{{ notOwnProfile.profile_image.url }}"
+                     class="rounded-circle">
+            {% endif %}
             <div class="account">
                 <p>@{{ notOwnProfile.user.username }}</p>
-                <a href="#">變更大頭貼照</a>
+                <a href="#">{{ profile_form.as_p }}</a>
             </div>
         </div>
 
         <div class="user_name">
             <h3>用戶名稱:</h3>
-            {{ form.first_name}}
+            {{ user_form.first_name }}
         </div>
 
 
